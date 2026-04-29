@@ -1,15 +1,16 @@
-using System.Windows.Forms;
+using Microsoft.UI.Xaml;
+
 namespace AgendaLicitacoes
 {
     internal static class Program
     {
         [System.STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.Run(new MainForm());
+            WinUIApplication.Current?.Close();
+            var app = new App();
+            app.InitializeComponent();
+            app.Run();
         }
     }
 }

@@ -1,0 +1,105 @@
+<ContentDialog
+    x:Class="AgendaLicitacoes.FormLicitacaoDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AgendaLicitacoes"
+    Title="Nova/Editar Licitação"
+    PrimaryButtonText="Salvar"
+    CloseButtonText="Cancelar"
+    Width="600"
+    PrimaryButtonClick="SaveButton_Click">
+
+    <ScrollViewer>
+        <StackPanel Spacing="12" Padding="16">
+            <!-- Ano -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Ano *" FontWeight="Bold" FontSize="12"/>
+                <TextBox x:Name="TxtAno" Placeholder="2024"/>
+            </StackPanel>
+
+            <!-- Estado (UF) -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Estado (UF) *" FontWeight="Bold" FontSize="12"/>
+                <ComboBox x:Name="CmbEstado" Placeholder="Selecionar"/>
+            </StackPanel>
+
+            <!-- Tipo de Licitação -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Tipo de Licitação *" FontWeight="Bold" FontSize="12"/>
+                <ComboBox x:Name="CmbTipo" Placeholder="Selecionar"/>
+            </StackPanel>
+
+            <!-- Número -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Número *" FontWeight="Bold" FontSize="12"/>
+                <TextBox x:Name="TxtNumero" Placeholder="000001"/>
+            </StackPanel>
+
+            <!-- Município -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Município *" FontWeight="Bold" FontSize="12"/>
+                <TextBox x:Name="TxtMunicipio" Placeholder="São Paulo"/>
+            </StackPanel>
+
+            <!-- Portal -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Portal *" FontWeight="Bold" FontSize="12"/>
+                <TextBox x:Name="TxtPortal" Placeholder="https://..."/>
+            </StackPanel>
+
+            <!-- Órgão -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Órgão *" FontWeight="Bold" FontSize="12"/>
+                <TextBox x:Name="TxtOrgao" Placeholder="Nome do órgão"/>
+            </StackPanel>
+
+            <!-- Código BB -->
+            <StackPanel Spacing="4" x:Name="CodigoBBPanel" Visibility="Collapsed">
+                <TextBlock Text="Código BB" FontWeight="Bold" FontSize="12"/>
+                <TextBox x:Name="TxtCodigoBB" Placeholder="000000"/>
+            </StackPanel>
+
+            <!-- Data de Disputa -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Data de Disputa *" FontWeight="Bold" FontSize="12"/>
+                <DatePicker x:Name="DtDisputa"/>
+            </StackPanel>
+
+            <!-- Hora -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Hora" FontWeight="Bold" FontSize="12"/>
+                <TimePicker x:Name="TimeDisputa"/>
+            </StackPanel>
+
+            <!-- Status -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Status" FontWeight="Bold" FontSize="12"/>
+                <ComboBox x:Name="CmbStatus" Placeholder="Selecionar"/>
+            </StackPanel>
+
+            <!-- Valor Estimado -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Valor Estimado" FontWeight="Bold" FontSize="12"/>
+                <TextBox x:Name="TxtValor" Placeholder="0,00"/>
+            </StackPanel>
+
+            <!-- Código Effecti -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Código Effecti" FontWeight="Bold" FontSize="12"/>
+                <TextBox x:Name="TxtCodigoEffecti" Placeholder="000000"/>
+            </StackPanel>
+
+            <!-- UASG -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="UASG" FontWeight="Bold" FontSize="12"/>
+                <TextBox x:Name="TxtUASG" Placeholder="000000"/>
+            </StackPanel>
+
+            <!-- Produtos/Objeto -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="Produtos / Objeto" FontWeight="Bold" FontSize="12"/>
+                <TextBox x:Name="TxtProdutos" Placeholder="Descrição..." Height="80" AcceptsReturn="True"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</ContentDialog>
