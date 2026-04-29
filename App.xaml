@@ -1,0 +1,42 @@
+<Application
+    x:Class="AgendaLicitacoes.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AgendaLicitacoes">
+    <Application.Resources>
+        <!-- Color Palette -->
+        <Color x:Key="BgColor">#FFFFFF</Color>
+        <Color x:Key="MidColor">#F5F5F5</Color>
+        <Color x:Key="BorderColor">#DADCE0</Color>
+        <Color x:Key="FgColor">#3C4043</Color>
+        <Color x:Key="MutedColor">#707579</Color>
+        <Color x:Key="AccentColor">#1A73E8</Color>
+        
+        <!-- Status Colors -->
+        <Color x:Key="StatusGanhoColor">#34A853</Color>
+        <Color x:Key="StatusPerdidoColor">#D33B27</Color>
+        <Color x:Key="StatusSuspensoColor">#EA8600</Color>
+        <Color x:Key="StatusNaoCodificadoColor">#C5221F</Color>
+        <Color x:Key="StatusAtaColor">#4285F4</Color>
+        
+        <!-- Brushes -->
+        <SolidColorBrush x:Key="BgBrush" Color="{StaticResource BgColor}" />
+        <SolidColorBrush x:Key="MidBrush" Color="{StaticResource MidColor}" />
+        <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}" />
+        <SolidColorBrush x:Key="FgBrush" Color="{StaticResource FgColor}" />
+        <SolidColorBrush x:Key="MutedBrush" Color="{StaticResource MutedColor}" />
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+        
+        <SolidColorBrush x:Key="StatusGanhoBrush" Color="{StaticResource StatusGanhoColor}" />
+        <SolidColorBrush x:Key="StatusPerdidoBrush" Color="{StaticResource StatusPerdidoColor}" />
+        <SolidColorBrush x:Key="StatusSuspensoBrush" Color="{StaticResource StatusSuspensoColor}" />
+        <SolidColorBrush x:Key="StatusNaoCodificadoBrush" Color="{StaticResource StatusNaoCodificadoColor}" />
+        <SolidColorBrush x:Key="StatusAtaBrush" Color="{StaticResource StatusAtaColor}" />
+        
+        <!-- Typography -->
+        <x:Double x:Key="TitleFontSize">20</x:Double>
+        <x:Double x:Key="SubtitleFontSize">14</x:Double>
+        <x:Double x:Key="BodyFontSize">12</x:Double>
+        <FontFamily x:Key="DefaultFont">Segoe UI</FontFamily>
+    </Application.Resources>
+</Application>

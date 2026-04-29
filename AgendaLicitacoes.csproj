@@ -1,16 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ApplicationIcon>app.ico</ApplicationIcon>
     <AssemblyTitle>Agenda de Licitações</AssemblyTitle>
     <Company>DIMAVE</Company>
     <Product>Agenda Licitações</Product>
     <Version>1.0.0</Version>
+    <UseWinUI>true</UseWinUI>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240829004" />
   </ItemGroup>
 </Project>

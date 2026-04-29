@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 
 namespace AgendaLicitacoes
 {
@@ -24,24 +23,29 @@ namespace AgendaLicitacoes
 
     public static class StatusInfo
     {
-        public static readonly Dictionary<StatusLicitacao,(string Nome,Color Cor,Color CorTexto)> Info = new()
+        public struct ColorInfo
         {
-            [StatusLicitacao.Cadastrado]      = ("Cadastrado",       Color.FromArgb( 59,130,246), Color.White),
-            [StatusLicitacao.Ganho]           = ("Ganho",            Color.FromArgb( 34,197, 94), Color.White),
-            [StatusLicitacao.Perdido]         = ("Perdido",          Color.FromArgb(239, 68, 68), Color.White),
-            [StatusLicitacao.Suspenso]        = ("Suspenso",         Color.FromArgb(249, 115, 22), Color.White),
-            [StatusLicitacao.Cancelado]       = ("Cancelado",        Color.FromArgb(107,114,128), Color.White),
-            [StatusLicitacao.Desclassificado]  = ("Desclassificado",    Color.FromArgb(220, 38, 38), Color.White),
-            [StatusLicitacao.Codificado]      = ("Codificado",       Color.FromArgb(139, 92,246), Color.White),
-            [StatusLicitacao.Impugnado]       = ("Impugnado",        Color.FromArgb(217, 70,239), Color.White),
-            [StatusLicitacao.NaoCodificado]   = ("Não Codificado",   Color.FromArgb(251,113,133), Color.White),
-            [StatusLicitacao.EnviadoAmostras] = ("Enviado Amostras", Color.FromArgb(  6,182,212), Color.White),
-            [StatusLicitacao.Ata]             = ("Ata",              Color.FromArgb(249,115, 22), Color.White),
-            [StatusLicitacao.Questionamento]  = ("Questionamento",   Color.FromArgb(234,179,  8), Color.White),
+            public string Nome { get; set; }
+            public uint CorARGB { get; set; }
+        }
+
+        public static readonly Dictionary<StatusLicitacao, ColorInfo> Info = new()
+        {
+            [StatusLicitacao.Cadastrado]      = new ColorInfo { Nome = "Cadastrado", CorARGB = 0xFF3B82F6 },
+            [StatusLicitacao.Ganho]           = new ColorInfo { Nome = "Ganho", CorARGB = 0xFF22C55E },
+            [StatusLicitacao.Perdido]         = new ColorInfo { Nome = "Perdido", CorARGB = 0xFFEF4444 },
+            [StatusLicitacao.Suspenso]        = new ColorInfo { Nome = "Suspenso", CorARGB = 0xFFF97316 },
+            [StatusLicitacao.Cancelado]       = new ColorInfo { Nome = "Cancelado", CorARGB = 0xFF6B7280 },
+            [StatusLicitacao.Desclassificado] = new ColorInfo { Nome = "Desclassificado", CorARGB = 0xFFDC2626 },
+            [StatusLicitacao.Codificado]      = new ColorInfo { Nome = "Codificado", CorARGB = 0xFF8B5CF6 },
+            [StatusLicitacao.Impugnado]       = new ColorInfo { Nome = "Impugnado", CorARGB = 0xFFD946EF },
+            [StatusLicitacao.NaoCodificado]   = new ColorInfo { Nome = "Não Codificado", CorARGB = 0xFFFB7185 },
+            [StatusLicitacao.EnviadoAmostras] = new ColorInfo { Nome = "Enviado Amostras", CorARGB = 0xFF06B6D4 },
+            [StatusLicitacao.Ata]             = new ColorInfo { Nome = "Ata", CorARGB = 0xFFF97316 },
+            [StatusLicitacao.Questionamento]  = new ColorInfo { Nome = "Questionamento", CorARGB = 0xFFEAB308 },
         };
         public static string GetNome(StatusLicitacao s)    => Info[s].Nome;
-        public static Color  GetCor(StatusLicitacao s)     => Info[s].Cor;
-        public static Color  GetCorTexto(StatusLicitacao s)=> Info[s].CorTexto;
+        public static uint GetCorARGB(StatusLicitacao s)   => Info[s].CorARGB;
     }
 
     public static class TipoInfo
@@ -59,7 +63,8 @@ namespace AgendaLicitacoes
 
     public class Item
     {
-        public string Numero="",Codigo="",Descricao="",Quantidade="",Unidade="",ValorUnitario="",ValorTotal="";
+        public string Numero="",Codigo="",Descricao="",Quantidade="",Unidade="",ValorTotal="";
+        public decimal ValorUnitario = 0;
         // Status do item: null=não definido, true=ganho, false=perdido
         public bool? Ganho = null;
     }
@@ -82,12 +87,13 @@ namespace AgendaLicitacoes
         // obrigatórios
         public string Ano=DateTime.Now.Year.ToString(),Estado="",Municipio="",Numero="",Portal="",Produtos="";
         // opcionais
-        public string          Orgao="",HoraDisputa="09:00",CodigoEffecti="",UASG="",ValorEstimado="";
+        public string          Orgao="",HoraDisputa="09:00",CodigoEffecti="",UASG="";
+        public decimal         ValorEstimado = 0;
         public string          CodigoBB="";
         public string          PastaServidor="",PastaCliente="",Diario="";
         public TipoLicitacao   Tipo   = TipoLicitacao.PE;
         public StatusLicitacao Status = StatusLicitacao.Cadastrado;
-        public DateTime?       DataDisputa;
+        public DateTime        DataDisputa = DateTime.Now;
         public DateTime?       DataInicioAta;
         public DateTime?       DataFimAta;
         public List<Item>          Itens    = new();
@@ -111,5 +117,17 @@ namespace AgendaLicitacoes
         public string Busca="",Estado="",Municipio="",Ano="",FiltroItem="";
         public StatusLicitacao? Status=null;
         public DateTime? DataInicio=null,DataFim=null;
+
+        public bool HasActiveFilter()
+        {
+            return !string.IsNullOrWhiteSpace(Busca) ||
+                   !string.IsNullOrWhiteSpace(Estado) ||
+                   !string.IsNullOrWhiteSpace(Municipio) ||
+                   !string.IsNullOrWhiteSpace(Ano) ||
+                   !string.IsNullOrWhiteSpace(FiltroItem) ||
+                   Status != null ||
+                   DataInicio != null ||
+                   DataFim != null;
+        }
     }
 }
