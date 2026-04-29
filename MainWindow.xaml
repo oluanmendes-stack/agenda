@@ -8,228 +8,247 @@
     Height="900">
 
     <Grid RowDefinitions="Auto,*" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <!-- Toolbar -->
-        <Grid 
-            x:Name="ToolbarArea"
-            Grid.Row="0"
-            Height="60"
-            Background="{StaticResource MidBrush}"
-            BorderBrush="{StaticResource BorderBrush}"
-            BorderThickness="0,0,0,1"
-            Padding="16,0"
-            ColumnDefinitions="Auto,*,Auto">
-            
-            <StackPanel 
-                Orientation="Horizontal" 
-                Spacing="8"
-                VerticalAlignment="Center"
-                Grid.Column="0">
-                <Button 
-                    x:Name="BtnNovaLicitacao"
-                    Content="+ Nova Licitação"
-                    Style="{StaticResource AccentButtonStyle}"
-                    Click="BtnNovaLicitacao_Click"/>
-                
-                <Button Content="◀" Click="BtnPrevious_Click" ToolTipService.ToolTip="Anterior"/>
-                <Button Content="Hoje" Click="BtnToday_Click" ToolTipService.ToolTip="Hoje"/>
-                <Button Content="▶" Click="BtnNext_Click" ToolTipService.ToolTip="Próximo"/>
-            </StackPanel>
-            
-            <StackPanel 
-                Orientation="Horizontal" 
-                Spacing="8"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Grid.Column="1">
-                <ToggleButton 
-                    x:Name="ViewToggleMonth"
-                    Content="Mês"
-                    Click="ViewToggle_Click"
-                    Tag="Month"
-                    IsChecked="True"/>
-                <ToggleButton 
-                    x:Name="ViewToggleWeek"
-                    Content="Semana"
-                    Click="ViewToggle_Click"
-                    Tag="Week"/>
-                <ToggleButton 
-                    x:Name="ViewToggleYear"
-                    Content="Ano"
-                    Click="ViewToggle_Click"
-                    Tag="Year"/>
-                <ToggleButton 
-                    x:Name="ViewToggleList"
-                    Content="Lista"
-                    Click="ViewToggle_Click"
-                    Tag="List"/>
-            </StackPanel>
-            
-            <Button 
-                x:Name="BtnConfig"
-                Content="⚙ Config"
-                Grid.Column="2"
-                Click="BtnConfig_Click"/>
-        </Grid>
+      
+      <!-- Toolbar -->
+      <Grid 
+          x:Name="ToolbarArea"
+          Grid.Row="0"
+          Height="60"
+          Background="{StaticResource MidBrush}"
+          BorderBrush="{StaticResource BorderBrush}"
+          BorderThickness="0,0,0,1"
+          Padding="16,0"
+          ColumnDefinitions="Auto,*,Auto">
+          
+        <StackPanel 
+            Orientation="Horizontal" 
+            Spacing="8"
+            VerticalAlignment="Center"
+            Grid.Column="0">
+
+          <Button 
+              x:Name="BtnNovaLicitacao"
+              Content="+ Nova Licitação"
+              Style="{StaticResource AccentButtonStyle}"
+              Click="BtnNovaLicitacao_Click"/>
+
+          <Button Content="◀" Click="BtnPrevious_Click" ToolTipService.ToolTip="Anterior"/>
+          <Button Content="Hoje" Click="BtnToday_Click" ToolTipService.ToolTip="Hoje"/>
+          <Button Content="▶" Click="BtnNext_Click" ToolTipService.ToolTip="Próximo"/>
+        </StackPanel>
         
-        <!-- Main content area with sidebar -->
-        <Grid Grid.Row="1" ColumnDefinitions="300,*">
-            <!-- Sidebar filters -->
-            <StackPanel 
-                x:Name="SidebarArea"
-                Grid.Column="0"
-                Background="{StaticResource BgBrush}"
-                BorderBrush="{StaticResource BorderBrush}"
-                BorderThickness="0,0,1,0"
-                Padding="16"
-                Spacing="12"
-                Orientation="Vertical">
-                
-                <!-- Search -->
-                <TextBlock 
-                    Text="Buscar"
-                    FontWeight="Bold"
-                    FontSize="12"/>
-                <TextBox 
-                    x:Name="TxtBusca"
-                    PlaceholderText="Digite aqui..."
-                    TextChanged="TxtBusca_TextChanged"/>
-                
-                <!-- UF Filter -->
-                <TextBlock 
-                    Text="Estado"
-                    FontWeight="Bold"
-                    FontSize="12"
-                    Margin="0,12,0,0"/>
-                <ComboBox 
-                    x:Name="CmbEst"
-                    PlaceholderText="Todos"
-                    SelectionChanged="CmbEst_SelectionChanged"/>
-                
-                <!-- Municipality Filter -->
-                <TextBlock 
-                    Text="Município"
-                    FontWeight="Bold"
-                    FontSize="12"
-                    Margin="0,12,0,0"/>
-                <ComboBox 
-                    x:Name="CmbMun"
-                    PlaceholderText="Todos"
-                    SelectionChanged="CmbMun_SelectionChanged"/>
-                
-                <!-- Year Filter -->
-                <TextBlock 
-                    Text="Ano"
-                    FontWeight="Bold"
-                    FontSize="12"
-                    Margin="0,12,0,0"/>
-                <ComboBox 
-                    x:Name="CmbAno"
-                    SelectionChanged="CmbAno_SelectionChanged"/>
-                
-                <!-- Status Filter -->
-                <TextBlock 
-                    Text="Status"
-                    FontWeight="Bold"
-                    FontSize="12"
-                    Margin="0,12,0,0"/>
-                <ComboBox 
-                    x:Name="CmbSt"
-                    PlaceholderText="Todos"
-                    SelectionChanged="CmbSt_SelectionChanged"/>
-                
-                <!-- Date Range Filters -->
-                <TextBlock 
-                    Text="Data Disputa - Início"
-                    FontWeight="Bold"
-                    FontSize="12"
-                    Margin="0,12,0,0"/>
-                <DatePicker 
-                    x:Name="DtInicio"
-                    DateChanged="DtInicio_DateChanged"/>
-                
-                <TextBlock 
-                    Text="Data Disputa - Fim"
-                    FontWeight="Bold"
-                    FontSize="12"
-                    Margin="0,12,0,0"/>
-                <DatePicker 
-                    x:Name="DtFim"
-                    DateChanged="DtFim_DateChanged"/>
-                
-                <!-- Item Filter -->
-                <TextBlock 
-                    Text="Filtro Item"
-                    FontWeight="Bold"
-                    FontSize="12"
-                    Margin="0,12,0,0"/>
-                <TextBox 
-                    x:Name="TxtItem"
-                    PlaceholderText="Descrição..."
-                    TextChanged="TxtItem_TextChanged"/>
-                
-                <!-- Clear button -->
-                <Button 
-                    Content="Limpar Filtros"
-                    Click="BtnLimparFiltros_Click"
-                    Margin="0,12,0,0"/>
-                
-                <!-- Stats section -->
-                <TextBlock 
-                    Text="Estatísticas - Mês"
-                    FontWeight="Bold"
-                    FontSize="12"
-                    Margin="0,12,0,0"/>
-                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" Spacing="8">
-                    <TextBlock Text="Ganho:" Grid.Row="0" Grid.Column="0" FontSize="11"/>
-                    <TextBlock x:Name="StatGanho" Text="0" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Foreground="{StaticResource StatusGanhoBrush}"/>
-                    
-                    <TextBlock Text="Perdido:" Grid.Row="1" Grid.Column="0" FontSize="11"/>
-                    <TextBlock x:Name="StatPerdido" Text="0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Foreground="{StaticResource StatusPerdidoBrush}"/>
-                    
-                    <TextBlock Text="Suspenso:" Grid.Row="2" Grid.Column="0" FontSize="11"/>
-                    <TextBlock x:Name="StatSuspenso" Text="0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Foreground="{StaticResource StatusSuspensoBrush}"/>
-                    
-                    <TextBlock Text="Não Codif.:" Grid.Row="3" Grid.Column="0" FontSize="11"/>
-                    <TextBlock x:Name="StatNaoCodificado" Text="0" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Foreground="{StaticResource StatusNaoCodificadoBrush}"/>
-                    
-                    <TextBlock Text="Total:" Grid.Row="4" Grid.Column="0" FontWeight="Bold" FontSize="11"/>
-                    <TextBlock x:Name="StatTotal" Text="0" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" FontWeight="Bold"/>
-                </Grid>
-                
-                <TextBlock 
-                    x:Name="LblResultados"
-                    Text="0 resultados"
-                    FontSize="10"
-                    Foreground="{StaticResource MutedBrush}"
-                    Margin="0,12,0,0"/>
-            </StackPanel>
-            
-            <!-- Main content -->
-            <Grid Grid.Column="1" Background="{StaticResource BgBrush}">
-                <!-- Calendar view -->
-                <local:CalendarPanel 
-                    x:Name="CalendarView"
-                    Margin="16"/>
-                
-                <!-- List view -->
-                <DataGrid 
-                    x:Name="ListViewGrid"
-                    Margin="16"
-                    Visibility="Collapsed"
-                    AutoGenerateColumns="False"
-                    CanUserReorderColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="80"/>
-                        <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}" Width="60"/>
-                        <DataGridTextColumn Header="Número" Binding="{Binding Numero}" Width="100"/>
-                        <DataGridTextColumn Header="Município/UF" Binding="{Binding MunicipioUF}" Width="150"/>
-                        <DataGridTextColumn Header="Disputa" Binding="{Binding DataDisputa}" Width="100"/>
-                        <DataGridTextColumn Header="Portal" Binding="{Binding Portal}" Width="100"/>
-                        <DataGridTextColumn Header="Órgão" Binding="{Binding Orgao}" Width="150"/>
-                        <DataGridTextColumn Header="Objeto" Binding="{Binding Produtos}" Width="200"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
+        <StackPanel 
+            Orientation="Horizontal" 
+            Spacing="8"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Grid.Column="1">
+
+          <ToggleButton 
+              x:Name="ViewToggleMonth"
+              Content="Mês"
+              Click="ViewToggle_Click"
+              Tag="Month"
+              IsChecked="True"/>
+
+          <ToggleButton 
+              x:Name="ViewToggleWeek"
+              Content="Semana"
+              Click="ViewToggle_Click"
+              Tag="Week"/>
+
+          <ToggleButton 
+              x:Name="ViewToggleYear"
+              Content="Ano"
+              Click="ViewToggle_Click"
+              Tag="Year"/>
+
+          <ToggleButton 
+              x:Name="ViewToggleList"
+              Content="Lista"
+              Click="ViewToggle_Click"
+              Tag="List"/>
+        </StackPanel>
+        
+        <Button 
+            x:Name="BtnConfig"
+            Content="⚙ Config"
+            Grid.Column="2"
+            Click="BtnConfig_Click"/>
+      </Grid>
+      
+      <!-- Main content area with sidebar -->
+      <Grid Grid.Row="1" ColumnDefinitions="300,*">
+
+        <!-- Sidebar filters -->
+        <StackPanel 
+            x:Name="SidebarArea"
+            Grid.Column="0"
+            Background="{StaticResource BgBrush}"
+            BorderBrush="{StaticResource BorderBrush}"
+            BorderThickness="0,0,1,0"
+            Padding="16"
+            Spacing="12"
+            Orientation="Vertical">
+
+          <!-- Search -->
+          <TextBlock 
+              Text="Buscar"
+              FontWeight="Bold"
+              FontSize="12"/>
+
+          <TextBox 
+              x:Name="TxtBusca"
+              PlaceholderText="Digite aqui..."
+              TextChanged="TxtBusca_TextChanged"/>
+
+          <!-- UF Filter -->
+          <TextBlock 
+              Text="Estado"
+              FontWeight="Bold"
+              FontSize="12"
+              Margin="0,12,0,0"/>
+
+          <ComboBox 
+              x:Name="CmbEst"
+              PlaceholderText="Todos"
+              SelectionChanged="CmbEst_SelectionChanged"/>
+
+          <!-- Municipality Filter -->
+          <TextBlock 
+              Text="Município"
+              FontWeight="Bold"
+              FontSize="12"
+              Margin="0,12,0,0"/>
+
+          <ComboBox 
+              x:Name="CmbMun"
+              PlaceholderText="Todos"
+              SelectionChanged="CmbMun_SelectionChanged"/>
+
+          <!-- Year Filter -->
+          <TextBlock 
+              Text="Ano"
+              FontWeight="Bold"
+              FontSize="12"
+              Margin="0,12,0,0"/>
+
+          <ComboBox 
+              x:Name="CmbAno"
+              SelectionChanged="CmbAno_SelectionChanged"/>
+
+          <!-- Status Filter -->
+          <TextBlock 
+              Text="Status"
+              FontWeight="Bold"
+              FontSize="12"
+              Margin="0,12,0,0"/>
+
+          <ComboBox 
+              x:Name="CmbSt"
+              PlaceholderText="Todos"
+              SelectionChanged="CmbSt_SelectionChanged"/>
+
+          <!-- Date Range Filters -->
+          <TextBlock 
+              Text="Data Disputa - Início"
+              FontWeight="Bold"
+              FontSize="12"
+              Margin="0,12,0,0"/>
+
+          <DatePicker 
+              x:Name="DtInicio"
+              DateChanged="DtInicio_DateChanged"/>
+
+          <TextBlock 
+              Text="Data Disputa - Fim"
+              FontWeight="Bold"
+              FontSize="12"
+              Margin="0,12,0,0"/>
+
+          <DatePicker 
+              x:Name="DtFim"
+              DateChanged="DtFim_DateChanged"/>
+
+          <!-- Item Filter -->
+          <TextBlock 
+              Text="Filtro Item"
+              FontWeight="Bold"
+              FontSize="12"
+              Margin="0,12,0,0"/>
+
+          <TextBox 
+              x:Name="TxtItem"
+              PlaceholderText="Descrição..."
+              TextChanged="TxtItem_TextChanged"/>
+
+          <!-- Clear button -->
+          <Button 
+              Content="Limpar Filtros"
+              Click="BtnLimparFiltros_Click"
+              Margin="0,12,0,0"/>
+
+          <!-- Stats section -->
+          <TextBlock 
+              Text="Estatísticas - Mês"
+              FontWeight="Bold"
+              FontSize="12"
+              Margin="0,12,0,0"/>
+
+          <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" Spacing="8">
+            <TextBlock Text="Ganho:" Grid.Row="0" Grid.Column="0" FontSize="11"/>
+            <TextBlock x:Name="StatGanho" Text="0" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Foreground="{StaticResource StatusGanhoBrush}"/>
+
+            <TextBlock Text="Perdido:" Grid.Row="1" Grid.Column="0" FontSize="11"/>
+            <TextBlock x:Name="StatPerdido" Text="0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Foreground="{StaticResource StatusPerdidoBrush}"/>
+
+            <TextBlock Text="Suspenso:" Grid.Row="2" Grid.Column="0" FontSize="11"/>
+            <TextBlock x:Name="StatSuspenso" Text="0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Foreground="{StaticResource StatusSuspensoBrush}"/>
+
+            <TextBlock Text="Não Codif.:" Grid.Row="3" Grid.Column="0" FontSize="11"/>
+            <TextBlock x:Name="StatNaoCodificado" Text="0" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Foreground="{StaticResource StatusNaoCodificadoBrush}"/>
+
+            <TextBlock Text="Total:" Grid.Row="4" Grid.Column="0" FontWeight="Bold" FontSize="11"/>
+            <TextBlock x:Name="StatTotal" Text="0" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" FontWeight="Bold"/>
+          </Grid>
+          
+          <TextBlock 
+              x:Name="LblResultados"
+              Text="0 resultados"
+              FontSize="10"
+              Foreground="{StaticResource MutedBrush}"
+              Margin="0,12,0,0"/>
+        </StackPanel>
+
+        <!-- Main content -->
+        <Grid Grid.Column="1" Background="{StaticResource BgBrush}">
+          
+          <!-- Calendar view -->
+          <local:CalendarPanel 
+              x:Name="CalendarView"
+              Margin="16"/>
+
+          <!-- List view -->
+          <DataGrid 
+              x:Name="ListViewGrid"
+              Margin="16"
+              Visibility="Collapsed"
+              AutoGenerateColumns="False"
+              CanUserReorderColumns="False">
+
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="80"/>
+              <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}" Width="60"/>
+              <DataGridTextColumn Header="Número" Binding="{Binding Numero}" Width="100"/>
+              <DataGridTextColumn Header="Município/UF" Binding="{Binding MunicipioUF}" Width="150"/>
+              <DataGridTextColumn Header="Disputa" Binding="{Binding DataDisputa}" Width="100"/>
+              <DataGridTextColumn Header="Portal" Binding="{Binding Portal}" Width="100"/>
+              <DataGridTextColumn Header="Órgão" Binding="{Binding Orgao}" Width="150"/>
+              <DataGridTextColumn Header="Objeto" Binding="{Binding Produtos}" Width="200"/>
+            </DataGrid.Columns>
+
+          </DataGrid>
         </Grid>
+      </Grid>
     </Grid>
-</Window>
+  </Window>
