@@ -10,6 +10,7 @@
     <Version>1.0.0</Version>
     <UseWinUI>true</UseWinUI>
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
